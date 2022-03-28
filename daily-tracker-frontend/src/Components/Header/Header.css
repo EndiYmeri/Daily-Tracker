@@ -1,0 +1,44 @@
+header {
+  background-color: #044389;
+  color: #F1F7ED;
+  display: -ms-grid;
+  display: grid;
+  width: calc(100% - 200px);
+  margin: auto;
+  grid-auto-flow: column;
+  padding: 1.5rem 4rem;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+header .account {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header ul {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 20px;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header ul li a {
+  color: #F1F7ED;
+  text-decoration: none;
+}
+/*# sourceMappingURL=Header.css.map */

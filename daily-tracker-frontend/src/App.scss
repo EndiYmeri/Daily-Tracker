@@ -1,0 +1,22 @@
+.hidden {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+$blue: #044389;
+$white: #F1F7ED;
+$olive: #748B75;
+$yellow-green: #84C318;
+$black: black;
+.App {
+    text-align: center;
+    .login-page {
+        height: 100vh;
+        place-items: center;
+        display: grid;
+        background-color: $blue;
+        color: $white;
+    }
+}

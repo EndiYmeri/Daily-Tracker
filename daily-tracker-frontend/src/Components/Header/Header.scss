@@ -1,0 +1,34 @@
+$blue: #044389;
+$white: #F1F7ED;
+$olive: #748B75;
+$yellow-green: #84C318;
+header {
+    background-color: $blue;
+    color: $white;
+    display: grid;
+    width: calc(100% - 200px);
+    margin: auto;
+    grid-auto-flow: column;
+    padding: 1.5rem 4rem;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    .account {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+    ul {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: center;
+        gap: 20px;
+        li {
+            list-style: none;
+            a {
+                color: $white;
+                text-decoration: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.hidden {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App .login-page {
+  height: 100vh;
+  place-items: center;
+  display: -ms-grid;
+  display: grid;
+  background-color: #044389;
+  color: #F1F7ED;
+}
+/*# sourceMappingURL=App.css.map */
