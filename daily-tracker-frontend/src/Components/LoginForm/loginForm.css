@@ -20,6 +20,15 @@ form p {
   font-weight: 500;
 }
 
+form .radio {
+  color: black;
+  justify-self: flex-start;
+}
+
+form .radio label {
+  margin: 0 5px;
+}
+
 form input {
   padding: 0.5rem 1.2rem;
   outline: none;

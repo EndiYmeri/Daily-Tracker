@@ -1,0 +1,11 @@
+.activity-button {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  color: #F1F7ED;
+  background-color: #044389;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+/*# sourceMappingURL=ActivityButton.css.map */

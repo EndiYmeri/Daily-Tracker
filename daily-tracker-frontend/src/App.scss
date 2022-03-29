@@ -1,3 +1,8 @@
+$blue: #044389;
+$white: #F1F7ED;
+$olive: #748B75;
+$yellow-green: #84C318;
+$black: black;
 .hidden {
     height: 0;
     overflow: hidden;
@@ -5,18 +10,26 @@
     margin: 0;
 }
 
-$blue: #044389;
-$white: #F1F7ED;
-$olive: #748B75;
-$yellow-green: #84C318;
-$black: black;
 .App {
     text-align: center;
+    height: 100vh;
     .login-page {
         height: 100vh;
         place-items: center;
         display: grid;
         background-color: $blue;
         color: $white;
+    }
+    .home-page {
+        padding: 2rem 0;
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 800px 400px;
+        aside {
+            display: grid;
+            gap: 20px;
+        }
     }
 }

@@ -15,14 +15,14 @@ export default function Header({user, setUser}:Props){
         if(setUser){
             setUser(undefined)
             localStorage.removeItem("token")
-            navigate('/')
+            navigate('/login')
         }
     }
     return (
         <header className={user? '' : 'hidden'} > 
             <div className="account">
-                <h3>Hello {user?.firstName}</h3>
-                <PositionedMenu logout={logout} />                
+                <h3>My account</h3>
+                <PositionedMenu logout={logout} />          
             </div>
 
             <nav>
@@ -31,7 +31,7 @@ export default function Header({user, setUser}:Props){
                         <NavLink to={'/'}>Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/sleep'}>Sleep</NavLink>
+                        <NavLink to={'/extra'}>Extra</NavLink>
                     </li>
                 </ul>
             </nav>

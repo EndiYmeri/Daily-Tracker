@@ -19,6 +19,13 @@ form {
         font-size: 1.2rem;
         font-weight: 500;
     }
+    .radio {
+        color: $black;
+        justify-self: flex-start;
+        label {
+            margin: 0 5px;
+        }
+    }
     input {
         padding: 0.5rem 1.2rem;
         outline: none;

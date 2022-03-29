@@ -7,6 +7,7 @@
 
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .App .login-page {
@@ -16,5 +17,22 @@
   display: grid;
   background-color: #044389;
   color: #F1F7ED;
+}
+
+.App .home-page {
+  padding: 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 800px 400px;
+      grid-template-columns: 800px 400px;
+}
+
+.App .home-page aside {
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
 }
 /*# sourceMappingURL=App.css.map */

@@ -15,7 +15,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-const PORT = 4000
+const PORT = 5000
 
 const createTokenFromUser = (id: number)=>{
     const token =  jwt.sign( {id}, secret)
@@ -188,15 +188,10 @@ app.get('/date/',async (req, res) => {
             }else{
                 nextMonth++
             }
-
             begginingDate = `${year}-${month}-01` + dateTimeEnding
-
-
             endingDate = nextMonth >= 10 
             ? `${nextYear}-${nextMonth}-01` + dateTimeEnding
             : `${nextYear}-0${nextMonth}-01` + dateTimeEnding
-            
-            
             if(day){
                 date = `${year}-${month}-${day}`+ dateTimeEnding
                 

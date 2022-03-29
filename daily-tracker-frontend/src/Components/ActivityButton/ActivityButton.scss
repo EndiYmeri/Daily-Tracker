@@ -1,0 +1,14 @@
+$blue: #044389;
+$white: #F1F7ED;
+$olive: #748B75;
+$yellow-green: #84C318;
+$black: black;
+.activity-button {
+    display: grid;
+    place-items: center;
+    color: $white;
+    background-color: $blue;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}

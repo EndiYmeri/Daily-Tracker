@@ -19,6 +19,7 @@ model User {
   password     String
   avatarImg    String
   dateOfBirth  DateTime
+  joinedAt     DateTime       @default(now())
   gender       String
   userDateInfo UserDateInfo[]
   followers    Followers[]

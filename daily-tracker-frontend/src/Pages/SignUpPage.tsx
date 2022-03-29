@@ -22,7 +22,7 @@ export default function SignUp({setUser}:Props){
     },[])
 
     function signUp(SignUpData: SignUpData){
-        fetch('http://localhost:4000/login',{
+        fetch('http://localhost:5000/users',{
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -32,20 +32,18 @@ export default function SignUp({setUser}:Props){
         .then( resp => resp.json())
         .then(data => {
             if(data.user){
-                setWrongCredentials(false)
                 setUser(data.user)
                 localStorage.setItem("token", data.token)
                 navigate('/')
             }else{
-                setWrongCredentials(true)
-                
+                console.log(data)
             }
         })
     }
     return (
         <div className="login-page">
             <div className="login-content">
-                <LoginForm login={signUp} title="Sign up"/>
+                <LoginForm submitFunc={signUp} title="Sign up"/>
             </div>
         </div>
       );

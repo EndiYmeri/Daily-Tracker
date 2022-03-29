@@ -18,7 +18,7 @@ function App() {
       setUser(undefined)
       navigate('/login')
     } else {
-      fetch('http://localhost:4000/validate',{
+      fetch('http://localhost:5000/validate',{
         method:"GET",
         headers:{
           'Authorization': localStorage.token
