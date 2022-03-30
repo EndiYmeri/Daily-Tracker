@@ -86,7 +86,12 @@ app.post('/login',async (req, res)  => {
     const {email, password} = req.body
     try{
         const user = await prisma.user.findUnique({
-            where: {email}
+            where: {email},
+            include:{
+                userDateInfo:true,
+                Following: true,
+                followers: true
+            }
         })
         if(user){
             const passwordMatches = bcryptjs.compareSync(password, user.password)
@@ -139,7 +144,6 @@ app.post('user/:username/date-info', async (req, res) => {
         res.status(400).send({error: err.message})
     }
 })
-
 
 app.post('/follow-request', async (req, res) => {
     const token = req.headers.authorization || ''
@@ -203,10 +207,10 @@ app.get('/date/',async (req, res) => {
         if(user){
             if(day){
                 const dateInfo = await prisma.date.findUnique({
-                    where: { date:date },
+                    where:{ date },
                     include:{ userDateInfo: { where: {userId : user.id }}}
                 }) 
-                res.send(date)
+                res.send(dateInfo)
             }else{
                 const dateInfo = await prisma.date.findMany({
                     include: { userDateInfo: { where: { userId : user.id }}},
@@ -217,7 +221,7 @@ app.get('/date/',async (req, res) => {
                         }
                     }
                 })
-                res.send(date)
+                res.send(dateInfo)
             }
         }
     }catch(err){

@@ -1,16 +1,17 @@
 import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Sector, Cell } from "recharts";
+import { PieChartData } from "../../types";
 
-const data = [
-  { name: "Sleep", value: 8.5 },
-  { name: "Work", value: 5.5 },
-  { name: "Fun", value: 3 },
-  { name: "Train", value: 3 },
-  { name: "Brain", value: 2 },
-  { name: "Relax", value: 2 },
+const defaultData = [
+  { name: "Sleep", value: 0 },
+  { name: "Work", value: 0 },
+  { name: "Fun", value: 0 },
+  { name: "Train", value: 0},
+  { name: "Brain", value: 0 },
+  { name: "Relax", value: 0 },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF9092', '#AB9992' ];
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -85,7 +86,11 @@ const renderActiveShape = (props: any) => {
   );
 };
 
-export default function PieChartComp() {
+type Props = {
+  data?: PieChartData[]
+}
+
+export default function PieChartComp({data = defaultData}:Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {

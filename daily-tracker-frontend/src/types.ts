@@ -24,3 +24,8 @@ export type UserDateInfo = {
     userId: number
     date: Date
 }
+
+export type PieChartData = {
+        name: string,
+        value: number
+}

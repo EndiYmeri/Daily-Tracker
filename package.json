@@ -9,7 +9,8 @@
         "prisma-migrate-dev": "npx prisma migrate dev"
     },
     "prisma": {
-        "schema": "./daily-tracker-backend/prisma/schema.prisma"
+        "schema": "./daily-tracker-backend/prisma/schema.prisma",
+        "seed": "ts-node ./daily-tracker-backend/prisma/seed.ts"
     },
     "author": "",
     "license": "ISC",

@@ -33,15 +33,17 @@ model Date {
 }
 
 model UserDateInfo {
-  id                   Int  @id @default(autoincrement())
-  sleepTime            Int  @default(0)
-  workTime             Int  @default(0)
-  physicalActivityTime Int  @default(0)
-  brainActivityTime    Int  @default(0)
-  learningTime         Int  @default(0)
-  user                 User @relation(fields: [userId], references: [id])
+  id                   Int   @id @default(autoincrement())
+  sleepTime            Float @default(0)
+  workTime             Float @default(0)
+  physicalActivityTime Float @default(0)
+  brainActivityTime    Float @default(0)
+  learningTime         Float @default(0)
+  relaxTime            Float @default(0)
+  funTime              Float @default(0)
+  user                 User  @relation(fields: [userId], references: [id])
   userId               Int
-  date                 Date @relation(fields: [dateId], references: [id])
+  date                 Date  @relation(fields: [dateId], references: [id])
   dateId               Int
 }
 

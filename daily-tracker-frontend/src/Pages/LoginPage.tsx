@@ -47,7 +47,7 @@ export default function LoginPage({setUser}:Props){
     return (
         <div className="login-page">
             <div className="login-content">
-                <LoginForm login={login} title="Log in"/>
+                <LoginForm submitFunc={login} title="Log in"/>
             </div>
         </div>
       );
