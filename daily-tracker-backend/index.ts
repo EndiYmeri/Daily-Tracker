@@ -145,6 +145,8 @@ app.post('user/:username/date-info', async (req, res) => {
     }
 })
 
+
+app.get('/latest-date-of-user')
 app.post('/follow-request', async (req, res) => {
     const token = req.headers.authorization || ''
     const username = req.body.username
@@ -229,4 +231,6 @@ app.get('/date/',async (req, res) => {
         res.status(400).send({error: err.message})
     }
 })
+
+
 app.listen(PORT, ()=>console.log(`Server running on http://localhost:${PORT}`)) 

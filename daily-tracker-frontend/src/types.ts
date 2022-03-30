@@ -8,7 +8,7 @@ export type User = {
     avatarImg: string
     gender: string
     dates? : Date[]
-    userDataInfo? :[]
+    userDateInfo? :UserDateInfo[]
 }
 export type Date = { 
     id:number

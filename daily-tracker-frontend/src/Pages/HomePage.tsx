@@ -10,7 +10,6 @@ type Props = {
 
 export default function HomePage({user}:Props){
 
-   
     return (
         <div className="home-page">
             <main>
@@ -18,7 +17,7 @@ export default function HomePage({user}:Props){
                 <p> Ready to start tracking your day </p>
                 <h3>Here are your activities for the last date</h3>
 
-               <MainChartSection />
+               <MainChartSection user = {user}/>
             </main>
             <aside>
                 <ActivityButton/>

@@ -3,17 +3,19 @@ import AdapterDateFns from '@mui/lab/AdapterMoment';
 import { TextField } from "@mui/material"
 import moment from "moment";
 import { useEffect, useState } from "react"
-import { PieChartData } from "../../../types"
+import { PieChartData, User, UserDateInfo } from "../../../types"
 import PieChartComp from "../../Charts/PieChart"
 
 type DaleSelected = {
-    date: string
-    month: string
-    year: string
+    date?: string
+    month?: string
+    year?: string
+}
+type Props={
+    user?: User
 }
 
 let currentTime = new Date()
-
 
 function getDateString(theDate: number){
     if(theDate < 9){
@@ -30,17 +32,33 @@ function getMonthString(theDate: number){
     }
 }
 
-export default function MainChartSection(){
+export default function MainChartSection({user}:Props){
 
     const [dateValue, setDateValue] = useState<Date | null>()
     const [pieChartData, setPieChartData] = useState< PieChartData[]>()
-    const [dateSelected, setDateSelected ] = useState< DaleSelected >(
-        {
-            date: getDateString(currentTime.getDate()),
-            month: getMonthString(currentTime.getMonth()),
-            year: String(currentTime.getUTCFullYear())  
-        }
-    )
+    const [dateSelected, setDateSelected ] = useState< DaleSelected >()
+    
+    let latestDay 
+    let latestMonth
+    let latestYear
+    let earliestDay 
+    let earliestMonth 
+    let earliestYear 
+    useEffect(()=>{
+         latestDay = user?.userDateInfo?.map(dateInfo => dateInfo.date).sort().reverse()[0].date.slice(8,10)
+         latestMonth = user?.userDateInfo?.map(dateInfo => dateInfo.date).sort().reverse()[0].date.slice(5,7)
+         latestYear = user?.userDateInfo?.map(dateInfo => dateInfo.date).sort().reverse()[0].date.slice(0,4)
+         earliestDay = user?.userDateInfo?.map(dateInfo => dateInfo.date).sort()[0].date.slice(8,10)
+         earliestMonth = user?.userDateInfo?.map(dateInfo => dateInfo.date).sort()[0].date.slice(5,7)
+         earliestYear = user?.userDateInfo?.map(dateInfo => dateInfo.date).sort()[0].date.slice(0,4)
+
+        setDateSelected({
+            date: latestDay,
+            month: latestMonth,
+            year:  latestYear
+        })
+    },[user])
+
     useEffect(()=>{
         fetch(`http://localhost:5000/date/?year=${dateSelected?.year}&month=${dateSelected?.month}&day=${dateSelected?.date}`,{
             method:"GET",
@@ -90,8 +108,11 @@ export default function MainChartSection(){
         <>  
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                    label="Basic example"
+                    label="Select Date"
                     value={dateValue}
+                    minDate={new Date(`${earliestYear}-${earliestMonth}-${earliestDay}`)}
+                    maxDate={new Date(`${latestYear}-${latestMonth}-${latestDay}`)}
+
                     onChange={(newValue) => {
                         setDateValue(newValue)
                         setDateSelected({
@@ -103,6 +124,7 @@ export default function MainChartSection(){
                             year: newValue._d.getFullYear()
                         })
                     }}
+
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
