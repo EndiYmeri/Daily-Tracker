@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import ActionButton from "../Components/ActivityButton/ActionButton"
-import PieChartComp from "../Components/Charts/PieChart"
 import MainChartSection from "../Components/MainChartSection/MainChartSection"
 import { PieChartData, User } from "../types"
 

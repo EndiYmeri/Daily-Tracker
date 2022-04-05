@@ -1,0 +1,10 @@
+form.chart-options {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 15px;
+}
+/*# sourceMappingURL=Charts.css.map */

@@ -1,5 +1,5 @@
 import { DatePicker, LocalizationProvider } from "@mui/lab";
-import PieChartComp from "../Charts/PieChart";
+import PieChartComp from "../Charts/PieChartComp";
 import { DateRangeType } from "./MainChartSection";
 import AdapterDateFns from '@mui/lab/AdapterMoment';
 import { useEffect, useState } from "react";

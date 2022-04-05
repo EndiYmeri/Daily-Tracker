@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { PieChart, Pie, Sector, Cell } from "recharts";
+import { PieChart, Pie, Sector, Cell, Legend } from "recharts";
 import { PieChartData } from "../../types";
 
 const defaultData = [
@@ -11,7 +11,7 @@ const defaultData = [
   { name: "Relax", value: 0 },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF9092', '#AB9992' ];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF9092', '#AB9992', "#FF1202" ];
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -101,6 +101,7 @@ export default function PieChartComp({data = defaultData}:Props) {
 
   return (
     <PieChart width={800} height={600}>
+        <Legend />
         <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
