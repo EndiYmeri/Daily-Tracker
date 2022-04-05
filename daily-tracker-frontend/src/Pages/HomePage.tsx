@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react"
-import ActivityButton from "../Components/ActivityButton/ActivityButton"
+import ActionButton from "../Components/ActivityButton/ActionButton"
 import PieChartComp from "../Components/Charts/PieChart"
-import MainChartSection from "../Components/Home/MainChartSection/MainChartSection"
+import MainChartSection from "../Components/MainChartSection/MainChartSection"
 import { PieChartData, User } from "../types"
 
 type Props = {
-    user? : User
+    user : User
 }
+
 
 export default function HomePage({user}:Props){
 
+    const [mainChart, setMainChart] = useState< "pieChart" | "lineChart" >("pieChart")
+    
     return (
         <div className="home-page">
             <main>
                 <h1>Welcome {user?.firstName}</h1>
-                <p> Ready to start tracking your day </p>
-                <h3>Here are your activities for the last date</h3>
+                <h3>Here is your last input on your activites</h3>
 
-               <MainChartSection user = {user}/>
+                <MainChartSection user={user} mainChart={mainChart} />               
             </main>
             <aside>
-                <ActivityButton/>
-                <ActivityButton/>
-                <ActivityButton/>
-                <ActivityButton/>
+                <ActionButton type={"chartDisplay"} action={setMainChart} />
+                <ActionButton action={setMainChart} />
+                <ActionButton action={setMainChart} />
+                <ActionButton action={setMainChart} />
             </aside>
         </div>
     )

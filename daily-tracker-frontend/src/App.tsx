@@ -14,13 +14,14 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => { 
-    if(!localStorage.token) {
-      setUser(undefined)
-      navigate('/login')
-    } else {
-      fetch('http://localhost:5000/validate',{
-        method:"GET",
-        headers:{
+    if(!user){
+      if(!localStorage.token) {
+        setUser(undefined)
+        navigate('/login')
+      } else {
+        fetch('http://localhost:5000/validate',{
+          method:"GET",
+          headers:{
           'Authorization': localStorage.token
         }
       })
@@ -33,16 +34,17 @@ function App() {
         }
       })
     }
-  },[])  
-  
+  }
+  },[user])  
+
 
   return (
     <div className="App">
       <Header user={user} setUser={setUser}/>
         <Routes>
-                <Route path='/'  element={ <HomePage user={user} /> }/>
-                <Route path='/login' element={ <LoginPage setUser={setUser} /> }/>
-                <Route path='/sign-up' element={ <SignUpPage setUser={setUser} /> }/>
+            { user !== undefined && <Route path='/'  element={<HomePage user={user}/>}/> }
+            <Route path='/login' element={ <LoginPage setUser={setUser} /> }/>
+            <Route path='/sign-up' element={ <SignUpPage setUser={setUser} /> }/>
         </Routes>
       <Footer/>
     </div>

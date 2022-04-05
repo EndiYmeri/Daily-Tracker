@@ -13,13 +13,19 @@ export type User = {
 export type Date = { 
     id:number
     date: string
-    users: User[]
+    users?: User[]
     userDateInfo: UserDateInfo[]
 }
 
 export type UserDateInfo = {
     id: number
     sleepTime: number
+    workTime: number,
+    funTime: number,
+    relaxTime: number,
+    learnTime: number,
+    trainTime: number,
+    brainTime: number,
     user: User
     userId: number
     date: Date
@@ -28,4 +34,15 @@ export type UserDateInfo = {
 export type PieChartData = {
         name: string,
         value: number
+}
+
+export type LineChartDateInfo = {
+    Date: string
+    Sleep: number
+    Work: number,
+    Fun: number,
+    Relax: number,
+    Learn: number,
+    Train: number,
+    Brain: number
 }

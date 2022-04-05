@@ -88,7 +88,7 @@ app.post('/login',async (req, res)  => {
         const user = await prisma.user.findUnique({
             where: {email},
             include:{
-                userDateInfo:true,
+                userDateInfo:{include: {date:true}},
                 Following: true,
                 followers: true
             }
@@ -145,8 +145,6 @@ app.post('user/:username/date-info', async (req, res) => {
     }
 })
 
-
-app.get('/latest-date-of-user')
 app.post('/follow-request', async (req, res) => {
     const token = req.headers.authorization || ''
     const username = req.body.username
@@ -176,54 +174,36 @@ app.post('/follow-request', async (req, res) => {
 
 app.get('/date/',async (req, res) => {
     const token = req.headers.authorization || ''
-    const {year, month, day} = req.query
-    // 2022-04-31T00:00:00.000Z
+    const {begginingDate, endingDate, singleDate} = req.query
     const dateTimeEnding = "T00:00:00.000Z"
-    let begginingDate = ''
-    let endingDate = ''
-    let date = ''
-    let nextYear = Number(year) 
-    let nextMonth = Number(month)
-    if(year){
-        begginingDate = `${year}-01-01` + dateTimeEnding
-        endingDate = `${nextYear + 1}-01-01` + dateTimeEnding
-        if(month) {
-            if(month === "12"){
-                nextMonth = 1,
-                nextYear++
-            }else{
-                nextMonth++
-            }
-            begginingDate = `${year}-${month}-01` + dateTimeEnding
-            endingDate = nextMonth >= 10 
-            ? `${nextYear}-${nextMonth}-01` + dateTimeEnding
-            : `${nextYear}-0${nextMonth}-01` + dateTimeEnding
-            if(day){
-                date = `${year}-${month}-${day}`+ dateTimeEnding
-                
-            }
-        }
-    }
     try{
         const user = await getUserFromToken(token)
         if(user){
-            if(day){
+            if(singleDate){
                 const dateInfo = await prisma.date.findUnique({
-                    where:{ date },
+                    where:{ date: singleDate + dateTimeEnding },
                     include:{ userDateInfo: { where: {userId : user.id }}}
                 }) 
-                res.send(dateInfo)
+                if(dateInfo){
+                    res.send(dateInfo)
+                }else{
+                    throw Error("No info found for this date range")
+                }
             }else{
-                const dateInfo = await prisma.date.findMany({
+                const dateRangeInfo = await prisma.date.findMany({
                     include: { userDateInfo: { where: { userId : user.id }}},
-                    where:{
+                    where: {
                         date:{
-                            gte: begginingDate,
-                            lt: endingDate
+                            gte: begginingDate + dateTimeEnding,
+                            lt: endingDate + dateTimeEnding
                         }
                     }
                 })
-                res.send(dateInfo)
+                if(dateRangeInfo){
+                    res.send(dateRangeInfo)
+                }else{
+                    throw Error("No Date Info found")
+                }
             }
         }
     }catch(err){

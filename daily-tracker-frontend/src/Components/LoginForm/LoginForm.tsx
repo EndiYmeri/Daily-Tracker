@@ -1,7 +1,6 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form"; 
 import { Link } from "react-router-dom";
 import "./loginForm.css"
-import { useState } from "react";
 
 type Inputs = {
     email: string,
@@ -22,8 +21,6 @@ type Props = {
 export default function LoginForm({ submitFunc, title }: Props) {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-
-    const [dateValue, setDateValue] = useState("")
     const isTitleLogin = title === "Log in"
 
     const onSubmit: SubmitHandler<Inputs> = data =>{

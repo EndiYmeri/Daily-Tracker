@@ -1,4 +1,4 @@
-.activity-button {
+.action-button {
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -8,4 +8,4 @@
   padding: 1rem 2rem;
   cursor: pointer;
 }
-/*# sourceMappingURL=ActivityButton.css.map */
+/*# sourceMappingURL=ActionButton.css.map */
