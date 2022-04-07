@@ -46,3 +46,12 @@ export type LineChartDateInfo = {
     Train: number,
     Brain: number
 }
+
+export type DateRangeType = {
+    latestDay: string,
+    latestMonth: string,
+    latestYear: string,
+    earliestDay: string,
+    earliestMonth: string,
+    earliestYear:string
+}

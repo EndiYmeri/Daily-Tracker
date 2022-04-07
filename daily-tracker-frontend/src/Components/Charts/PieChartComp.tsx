@@ -100,7 +100,7 @@ export default function PieChartComp({data = defaultData}:Props) {
   );
 
   return (
-    <PieChart width={800} height={600}>
+    <PieChart width={800} height={500}>
         <Legend />
         <Pie
             activeIndex={activeIndex}

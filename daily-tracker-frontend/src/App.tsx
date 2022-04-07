@@ -42,7 +42,7 @@ function App() {
     <div className="App">
       <Header user={user} setUser={setUser}/>
         <Routes>
-            { user !== undefined && <Route path='/'  element={<HomePage user={user}/>}/> }
+            { user !== undefined && <Route path='/'  element={<HomePage user={user} setUser={setUser} />}/> }
             <Route path='/login' element={ <LoginPage setUser={setUser} /> }/>
             <Route path='/sign-up' element={ <SignUpPage setUser={setUser} /> }/>
         </Routes>

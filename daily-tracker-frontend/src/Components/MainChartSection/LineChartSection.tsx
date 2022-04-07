@@ -2,9 +2,8 @@ import AdapterDateFns from '@mui/lab/AdapterMoment';
 import { DatePicker, LocalizationProvider } from "@mui/lab"
 import moment from "moment"
 import { useEffect, useState } from "react"
-import { LineChartDateInfo } from "../../types"
+import { DateRangeType, LineChartDateInfo } from "../../types"
 import LineChartComp from "../Charts/LineChart"
-import { DateRangeType } from "./MainChartSection"
 import { TextField } from '@mui/material';
 import { getMonthString, getDateString } from "../../helperFunc";
 
@@ -27,7 +26,7 @@ export default function LineChartSection({dateRange, minDate, maxDate}:Props){
     useEffect(()=>{
         setBegginingDateValue(moment(new Date(begginingDate)))
         setEndingDateValue(moment(new Date(endingDate)))
-    },[])
+    },[minDate, maxDate])
 
     useEffect(()=>{
        fetch(`http://localhost:5000/date/?begginingDate=${begginingDate}&endingDate=${endingDate}`,{
@@ -41,7 +40,6 @@ export default function LineChartSection({dateRange, minDate, maxDate}:Props){
             if(!dataFetched.error){
                 setDateInfoFound(true)
                 let dataFound = dataFetched.map((data:any) => {
-                    console.log(data);
                     let date = moment(new Date(data.date)).format("DD/MM")
                     return {
                             Date: date,

@@ -1,0 +1,26 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    background-color: rgba($color: black, $alpha: 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    form {
+        padding: 2rem 4rem;
+        label {
+            display: grid;
+            gap: 10px;
+            justify-content: center;
+            input {
+                text-align: center;
+            }
+        }
+    }
+}

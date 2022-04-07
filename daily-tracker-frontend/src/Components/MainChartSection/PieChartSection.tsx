@@ -1,11 +1,10 @@
 import { DatePicker, LocalizationProvider } from "@mui/lab";
 import PieChartComp from "../Charts/PieChartComp";
-import { DateRangeType } from "./MainChartSection";
 import AdapterDateFns from '@mui/lab/AdapterMoment';
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { TextField } from "@mui/material";
-import { PieChartData } from "../../types";
+import { DateRangeType, PieChartData } from "../../types";
 import { getMonthString, getDateString } from "../../helperFunc";
 
 
@@ -27,7 +26,7 @@ export default function PieChartSection({dateRange, maxDate, minDate}:Props){
         setDateSelected(`${dateRange.latestYear}-${dateRange.latestMonth}-${dateRange.latestDay}`)
         // Set DatePicker default date to the latest date
         setDateValue(moment( new Date(`${dateRange.latestYear}/${dateRange.latestMonth}/${dateRange.latestDay}`)))
-    },[])
+    },[minDate, maxDate])
 
     useEffect(()=>{
         fetch(`http://localhost:5000/date/?singleDate=${dateSelected}`,{
@@ -53,7 +52,6 @@ export default function PieChartSection({dateRange, maxDate, minDate}:Props){
         })
     },[dateSelected])
 
-
     return <>
          <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -72,9 +70,7 @@ export default function PieChartSection({dateRange, maxDate, minDate}:Props){
                     }}
                     renderInput={(params) => <TextField {...params} />}
                 />
-                
         </LocalizationProvider>
-        
         {pieChartData && <PieChartComp data = {pieChartData} /> }
     </>
 }

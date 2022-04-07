@@ -95,7 +95,7 @@ app.post('/login',async (req, res)  => {
         })
         if(user){
             const passwordMatches = bcryptjs.compareSync(password, user.password)
-            passwordMatches
+            // passwordMatches
             if(passwordMatches){
                 const token =  createTokenFromUser(user.id)
                 res.send({user,token})
@@ -107,9 +107,12 @@ app.post('/login',async (req, res)  => {
     }
  })
 
-app.post('user/:username/date-info', async (req, res) => {
+app.post('/user/date-info', async (req, res) => {
     const token = req.headers.authorization || ''
-    const {sleepTime, date, workTime, brainActivityTime, physicalActivityTime, learningTime } = req.body
+    const {sleepTime, date, workTime, brainActivityTime, physicalActivityTime, learningTime, relaxTime, funTime } = req.body
+    const dateTimeEnding = "T00:00:00.000Z"
+    const isoDate = date + dateTimeEnding
+
     try{
        const user = await getUserFromToken(token)
        if(user){
@@ -120,6 +123,8 @@ app.post('user/:username/date-info', async (req, res) => {
                     brainActivityTime,
                     physicalActivityTime,
                     learningTime,
+                    relaxTime,
+                    funTime,
                     user:{
                         connect:{
                             email: user.email
@@ -127,8 +132,8 @@ app.post('user/:username/date-info', async (req, res) => {
                     },
                     date:{
                         connectOrCreate:{
-                            where: { date },
-                            create:{ date }
+                            where: { date: isoDate },
+                            create:{ date: isoDate }
                         }
                     }
                 },
@@ -195,7 +200,7 @@ app.get('/date/',async (req, res) => {
                     where: {
                         date:{
                             gte: begginingDate + dateTimeEnding,
-                            lt: endingDate + dateTimeEnding
+                            lte: endingDate + dateTimeEnding
                         }
                     }
                 })

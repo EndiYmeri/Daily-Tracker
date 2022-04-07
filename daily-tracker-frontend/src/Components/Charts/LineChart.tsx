@@ -29,25 +29,25 @@ export default function App({lineChartData}:Props) {
     <>
         <form  className="chart-options">
             <label htmlFor="sleep">
-                Sleep: <input type="checkbox" {...register("sleep")} name="sleep" id="sleep" />
+                Sleep <input type="checkbox" {...register("sleep")} name="sleep" id="sleep" />
             </label>
             <label htmlFor="work">
-                Work: <input type="checkbox" {...register("work")} name="work" id="work" />
+                Work <input type="checkbox" {...register("work")} name="work" id="work" />
             </label>
             <label htmlFor="train">
                 Train <input type="checkbox" {...register("train")} name="train" id="train" />
             </label>
             <label htmlFor="relax">
-                Relax: <input type="checkbox" {...register("relax")} name="relax" id="relax" />
+                Relax <input type="checkbox" {...register("relax")} name="relax" id="relax" />
             </label>
             <label htmlFor="learn">
-                Learn: <input type="checkbox" {...register("learn")} name="learn" id="learn" />
+                Learn <input type="checkbox" {...register("learn")} name="learn" id="learn" />
             </label>
             <label htmlFor="brain">
-                Brain: <input type="checkbox" {...register("brain")} name="brain" id="brain" />
+                Brain <input type="checkbox" {...register("brain")} name="brain" id="brain" />
             </label>
             <label htmlFor="fun">
-                Fun <input type="checkbox" {...register("fun")} name="" id="fun" />
+                Fun <input type="checkbox" {...register("fun")} name="fun" id="fun" />
             </label>
         </form>
         <LineChart
@@ -71,11 +71,9 @@ export default function App({lineChartData}:Props) {
         { watch(`train`) && <Line type="monotone" dataKey="Train" stroke="#FFBB28" /> }
         { watch(`relax`) && <Line type="monotone" dataKey="Relax" stroke="#FF8042" /> }
         { watch(`brain`) && <Line type="monotone" dataKey="Brain" stroke="#FF9092" /> }
-        { watch(`fun`) && <Line type="monotone" dataKey="Fun" stroke="#AB9992'" /> }
+        { watch(`fun`) && <Line type="monotone" dataKey="Fun" stroke="#AB9992" /> }
         { watch(`learn`) && <Line type="monotone" dataKey="Learn" stroke="#FF1202" /> }
         </LineChart>
     </>
   );
 }
-
-// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF9092', '#AB9992', "#FF1202" ];
