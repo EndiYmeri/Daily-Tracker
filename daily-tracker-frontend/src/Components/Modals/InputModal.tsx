@@ -73,6 +73,7 @@ export default function InputModal({ minDate, setInputModal, user, setUser }: Pr
     return (
         <div className="modal">
             <div className="modal-content">
+                <div className="close-button" onClick={()=>{setInputModal(false)}}>❎</div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <h1>Add new input to your daily tracker</h1>
                     {totalHours > 24 ? "Your activities cannot exceed 24 hours" : null}

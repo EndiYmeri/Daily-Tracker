@@ -53,24 +53,33 @@ export default function PieChartSection({dateRange, maxDate, minDate}:Props){
     },[dateSelected])
 
     return <>
-         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                    label="Select Date"
-                    value={dateValue}
-                    minDate = {minDate}
-                    maxDate = {maxDate}
-                    onChange={(newValue) => {
-                        if(newValue){
-                            setDateValue(newValue)
-                            setDateSelected(
-                                // @ts-ignore
-                                `${newValue.year()}-${getMonthString(newValue.month())}-${getDateString(newValue.date())}`
-                            )
-                        }
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-        </LocalizationProvider>
-        {pieChartData && <PieChartComp data = {pieChartData} /> }
+        {dateInfoFound?     
+        (
+            <>
+                <h3>Here is your last input on your activites</h3>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        label="Select Date"
+                        value={dateValue}
+                        minDate = {minDate}
+                        maxDate = {maxDate}
+                        onChange={(newValue) => {
+                            if(newValue){
+                                setDateValue(newValue)
+                                setDateSelected(
+                                    // @ts-ignore
+                                    `${newValue.year()}-${getMonthString(newValue.month())}-${getDateString(newValue.date())}`
+                                    )
+                                }
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                            />
+            </LocalizationProvider>
+            pieChartData && <PieChartComp data = {pieChartData} /> 
+             </>
+        )    
+        : <h1>No data found</h1>
+        }
+                    
     </>
 }

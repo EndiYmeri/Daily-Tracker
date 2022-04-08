@@ -13,6 +13,10 @@
           backdrop-filter: blur(2px);
 }
 
+.modal-content {
+  position: relative;
+}
+
 .modal-content form {
   padding: 2rem 4rem;
 }
@@ -28,5 +32,19 @@
 
 .modal-content form label input {
   text-align: center;
+}
+
+.modal-content .close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  cursor: pointer;
+}
+
+.modal-content .close-button:hover {
+  -webkit-transform: scale(1.6);
+          transform: scale(1.6);
 }
 /*# sourceMappingURL=modal.css.map */

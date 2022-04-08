@@ -7,6 +7,7 @@ import LoginPage from './Pages/LoginPage'
 import HomePage from './Pages/HomePage'
 import { User } from './types'
 import SignUpPage from './Pages/SignUpPage'
+import Extra from './Pages/Extra'
 
 function App() {
   const [user, setUser] = useState<User>()
@@ -42,9 +43,14 @@ function App() {
     <div className="App">
       <Header user={user} setUser={setUser}/>
         <Routes>
-            { user !== undefined && <Route path='/'  element={<HomePage user={user} setUser={setUser} />}/> }
             <Route path='/login' element={ <LoginPage setUser={setUser} /> }/>
             <Route path='/sign-up' element={ <SignUpPage setUser={setUser} /> }/>
+            { user? <>
+                <Route path='/'  element={<HomePage user={user} setUser={setUser} />}/> 
+                <Route path='/extra' element={<Extra user={user} />} />
+              </> 
+              : null
+            }
         </Routes>
       <Footer/>
     </div>

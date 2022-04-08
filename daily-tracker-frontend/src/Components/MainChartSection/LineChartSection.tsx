@@ -60,42 +60,49 @@ export default function LineChartSection({dateRange, minDate, maxDate}:Props){
 
 
     return  <>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                    label="Select beggining date"
-                    value={begginingDateValue}
-                    minDate = {minDate}
-                    maxDate = {maxDate}
-                    onChange={(newValue) => {
-                        if(newValue){
-                            setBegginingDateValue(newValue)
-                            setBegginingDate(
-                                // @ts-ignore
-                                `${newValue.year()}-${getMonthString(newValue.month())}-${getDateString(newValue.date())}`
-                            )
-                        }
-                    }}
+            {
+                dateInfoFound? 
+                <>
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
+                                label="Select beggining date"
+                                value={begginingDateValue}
+                                minDate = {minDate}
+                                maxDate = {maxDate}
+                                onChange={(newValue) => {
+                                    if(newValue){
+                                        setBegginingDateValue(newValue)
+                                        setBegginingDate(
+                                            // @ts-ignore
+                                            `${newValue.year()}-${getMonthString(newValue.month())}-${getDateString(newValue.date())}`
+                                            )
+                                        }
+                                    }}
 
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                <DatePicker
-                    label="Select ending date"
-                    value={endingDateValue}
-                    minDate = {minDate}
-                    maxDate = {maxDate}
-                    onChange={(newValue) => {
-                        if(newValue){
-                            setEndingDateValue(newValue)
-                            setEndingDate(
-                                // @ts-ignore
-                                `${newValue._d.getFullYear()}-${getMonthString(newValue._d.getMonth())}-${getDateString(newValue._d.getDate())}`
-                            )
-                        }
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                
-            </LocalizationProvider>
-                {        lineChartData && <LineChartComp lineChartData={lineChartData}/>}
+                                    renderInput={(params) => <TextField {...params} />}
+                                    />
+                            <DatePicker
+                                label="Select ending date"
+                                value={endingDateValue}
+                                minDate = {minDate}
+                                maxDate = {maxDate}
+                                onChange={(newValue) => {
+                                    if(newValue){
+                                        setEndingDateValue(newValue)
+                                        setEndingDate(
+                                            // @ts-ignore
+                                            `${newValue._d.getFullYear()}-${getMonthString(newValue._d.getMonth())}-${getDateString(newValue._d.getDate())}`
+                                            )
+                                        }
+                                    }}
+                                    renderInput={(params) => <TextField {...params} />}
+                                    />
+                            
+                        </LocalizationProvider>
+                        {lineChartData && <LineChartComp lineChartData={lineChartData}/>}
+                </>
+                : <h1>No data found</h1>
+
+            }
             </>
 }

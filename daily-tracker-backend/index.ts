@@ -49,7 +49,16 @@ app.get('/validate', async (req, res) => {
     }
 })
 
-app.get('/',async (req, res) => {
+app.get('/users',async (req, res) => {
+    const users = await prisma.user.findMany({
+        include:{
+            userDateInfo:{include:{date:true}}
+        }
+    })
+    if(users){
+        res.send(users)
+    }
+    else{res.status(404).send({error: "No users found"})}
 })
 
 app.post('/users',async (req, res) => {
@@ -137,6 +146,7 @@ app.post('/user/date-info', async (req, res) => {
                         }
                     }
                 },
+                include:{date:true}
             })
             if(dateInfo){
                 res.send(dateInfo)

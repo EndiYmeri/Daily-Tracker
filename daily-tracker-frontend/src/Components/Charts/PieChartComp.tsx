@@ -2,14 +2,14 @@ import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Sector, Cell, Legend } from "recharts";
 import { PieChartData } from "../../types";
 
-const defaultData = [
-  { name: "Sleep", value: 0 },
-  { name: "Work", value: 0 },
-  { name: "Fun", value: 0 },
-  { name: "Train", value: 0},
-  { name: "Brain", value: 0 },
-  { name: "Relax", value: 0 },
-];
+// const defaultData = [
+//   { name: "Sleep", value: 0 },
+//   { name: "Work", value: 0 },
+//   { name: "Fun", value: 0 },
+//   { name: "Train", value: 0},
+//   { name: "Brain", value: 0 },
+//   { name: "Relax", value: 0 },
+// ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF9092', '#AB9992', "#FF1202" ];
 
@@ -90,7 +90,7 @@ type Props = {
   data?: PieChartData[]
 }
 
-export default function PieChartComp({data = defaultData}:Props) {
+export default function PieChartComp({data}:Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {
@@ -100,24 +100,28 @@ export default function PieChartComp({data = defaultData}:Props) {
   );
 
   return (
-    <PieChart width={800} height={500}>
-        <Legend />
-        <Pie
-            activeIndex={activeIndex}
-            activeShape={renderActiveShape}
-            data={data}
-            cx={400}
-            cy={250}
-            innerRadius={140}
-            outerRadius={180}
-            fill="#8884d8"
-            dataKey="value"
-            onMouseEnter={onPieEnter}
-        >
-           {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-        </Pie>
-    </PieChart>
+    <>
+      {
+        <PieChart width={800} height={500}>
+            <Legend />
+            <Pie
+                activeIndex={activeIndex}
+                activeShape={renderActiveShape}
+                data={data}
+                cx={400}
+                cy={250}
+                innerRadius={140}
+                outerRadius={180}
+                fill="#8884d8"
+                dataKey="value"
+                onMouseEnter={onPieEnter}
+            >
+              {data?.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+            </Pie>
+        </PieChart>
+      }  
+    </>
   );
 }

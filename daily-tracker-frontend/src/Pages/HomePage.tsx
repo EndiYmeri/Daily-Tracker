@@ -5,15 +5,15 @@ import MainChartSection from "../Components/MainChartSection/MainChartSection"
 import { PieChartData, User } from "../types"
 
 type Props = {
-    user : User,
+    user: User,
     setUser: Function
 }
 
 
 
-export default function HomePage({user, setUser}:Props){
-    const [mainChart, setMainChart] = useState< "pieChart" | "lineChart" >("pieChart")
+export default function HomePage({ user, setUser }: Props) {
+    const [mainChart, setMainChart] = useState<"pieChart" | "lineChart">("pieChart")
     return (
-       <Home user={user} setUser={setUser}/>
+        <Home user={user} setUser={setUser} />
     )
 }
